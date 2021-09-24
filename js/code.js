@@ -82,22 +82,11 @@ function getData(_gnre='comedy') {
 		.then((data) => {
 			
 
-			if(idURL){
-				console.log(data)
-				let name = document.getElementById('name').value
-				let description = document.getElementById('description').value
-				let imgurl = document.getElementById('imgurl').value
-
-
-
-
-
-			}else{
 
 			createCarousel(data)
 
 
-			}
+			
 			
 
 
