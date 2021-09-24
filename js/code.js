@@ -105,7 +105,7 @@ function createCarousel(_data, _row='trendingNow' ){
 
 
 	for(let i =0; i<IMGs.length; i++){
-		IMGs[i].src=_data[i+4].imageUrl
+		IMGs[i].src=_data[i].imageUrl
 
 
 	}
@@ -119,7 +119,24 @@ function createCarousel(_data, _row='trendingNow' ){
 
 window.onload = function () {
 
-getData('romance')
+let romanceButton = document.getElementById('romance')
+romanceButton.addEventListener('click', ()=>{
+	getData('romance')
+
+})
+
+let comedyButton = document.getElementById('comedy')
+comedyButton.addEventListener('click', ()=>{
+	getData()
+
+})
+let FantasyButton = document.getElementById('fantasy')
+FantasyButton.addEventListener('click', ()=>{
+	getData('fantasy')
+
+})
+
+
 
 
 
