@@ -80,12 +80,12 @@ function getData(_gnre='comedy') {
 			return response.json()
 		})
 		.then((data) => {
-			
+			console.log(data)
 
 			createCarousel(data)
 
 
-			console.log(data)
+			
 		})
 		.catch(err => {
 			console.error(err);
@@ -107,6 +107,12 @@ function createCarousel(_data, _row='trendingNow' ){
 	for(let i =0; i<IMGs.length; i++){
 		IMGs[i].src=_data[i].imageUrl
 
+		//send to movie info
+		IMGs[i].onclick=()=>{
+			window.location.assign(`./movieDetail.html?id=`+_data[i]._id);
+
+		}
+	
 
 	}
 
