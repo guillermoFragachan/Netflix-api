@@ -80,10 +80,16 @@ function getData(_gnre='comedy') {
 			return response.json()
 		})
 		.then((data) => {
-			console.log(data)
+			
 
 			if(idURL){
 				console.log(data)
+				let name = document.getElementById('name').value
+				let description = document.getElementById('description').value
+				let imgurl = document.getElementById('imgurl').value
+
+
+
 
 
 			}else{
@@ -119,7 +125,7 @@ function createCarousel(_data, _row='trendingNow' ){
 
 		//send to movie info
 		IMGs[i].onclick=()=>{
-			window.location.assign(`./movieDetail.html?id=`+_data[i]._id);
+			window.location.assign(`./movieDetail.html?id=`+_data[i]._id+'&category='+_data[i].category);
 			//+`&?category=`+_data[i].category
 
 		}
@@ -134,7 +140,6 @@ function createCarousel(_data, _row='trendingNow' ){
 
 
 //url params
-const idURL = new URLSearchParams(location.search).get("id")
 const categoryURL =  new URLSearchParams(window.location.search).get("category")
 
 
@@ -165,30 +170,18 @@ headers: {
 
 //suppossed to bring data to the backoffice DOESNT WORK YET
 
-function bringDatatoDetailPage(_urlID=idURL){
-	fetch("https://striveschool-api.herokuapp.com/api/movies/"+_id, {
-method: 'GET',
+// function bringDatatoDetailPage(_urlID=idURL, _cat=categoryURL){
+// 	fetch("https://striveschool-api.herokuapp.com/api/movies/"+_cat, {
+// method: 'GET',
 
-headers: {
+// headers: {
 
-	"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMWM5NDRiYjUzZDAwMTViMTllY2MiLCJpYXQiOjE2MzI0NzY2NDAsImV4cCI6MTYzMzY4NjI0MH0.EfADlnD4qaCkTQXgxZufji8eoBYtPLM0N5yAamp7gCU",
-	'Content-Type': 'application/json'
-}
-}).then()
+// 	"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMWM5NDRiYjUzZDAwMTViMTllY2MiLCJpYXQiOjE2MzI0NzY2NDAsImV4cCI6MTYzMzY4NjI0MH0.EfADlnD4qaCkTQXgxZufji8eoBYtPLM0N5yAamp7gCU",
+// 	'Content-Type': 'application/json'
+// }
+// })}
 
-
-
-
-}
-
-
-let obj = {
-				name: 'dsadas',
-                description:'dsadadsa' ,
-                category: 'romance',
-                imageUrl: 'https://m.media-amazon.com/images/M/MV5BMzUzMmRlYTAtZjJkYy00YWM2LWJhNzUtOGZkOGJjNWFiY2NkXkEyXkFqcGdeQXVyMzM1MjQzNTk@._V1_.jpg'
-
-}
+let idURL = new URLSearchParams(location.search).get("id")
 
 //edit function
 function editData(_url, obj) {
@@ -200,12 +193,44 @@ function editData(_url, obj) {
 			"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMWM5NDRiYjUzZDAwMTViMTllY2MiLCJpYXQiOjE2MzI0NzY2NDAsImV4cCI6MTYzMzY4NjI0MH0.EfADlnD4qaCkTQXgxZufji8eoBYtPLM0N5yAamp7gCU",
 			'Content-Type': 'application/json'
 		}
-	})
+	}).then(window.location.assign('./'))
+
 
 }
 
 
-function submit(){
+//edit button prevent from refreshing the page
+
+const form = document.getElementsByTagName('form')
+
+function submit(_url=idURL){
+
+	let name = document.getElementById('name').value
+	let description = document.getElementById('description').value
+	let imgurl = document.getElementById('imgurl').value
+
+
+
+	let obj = {
+
+		name: name,
+		description: description,
+		imageUrl: imgurl,
+
+
+
+
+
+	}
+	
+
+	
+		
+		editData(_url, obj)
+		
+
+	
+
 
 }
 
